@@ -13,48 +13,51 @@ import java.util.List;
 @Service
 public class PriceAnalysisService {
 
-    Logger logger = LoggerFactory.getLogger(PriceAnalysisService.class);
+    private final Logger logger = LoggerFactory.getLogger(PriceAnalysisService.class);
 
     public ShareMarketModel priceDownAnalysisByPrice(RequestShareModel requestShareModel) {
         ShareMarketModel model = new ShareMarketModel();
-        model.setCompanyName(requestShareModel.getCompanyName());
+        model.setCompanyName(requestShareModel.companyName());
         List<ShareMarketDetails> marketDetailsList = new ArrayList<>();
-        Integer newQuan = requestShareModel.getExistingQuantity();
-        Double averagePrice = requestShareModel.getExistingPrice();
-        while (averagePrice >= requestShareModel.getDesiredPrice()) {
-            ++newQuan;
-            averagePrice = ((averagePrice * newQuan) + requestShareModel.getCurrentPrice())/newQuan;
-            logger.info( requestShareModel.getCompanyName(), newQuan , averagePrice ,"Share :: {0}   Quantity :: {1}  Price:: {2}");
+        Integer newQuan = requestShareModel.existingQuantity();
+        Double averagePrice = requestShareModel.existingPrice();
+        while (averagePrice >= requestShareModel.desiredPrice()) {
+            averagePrice = ((averagePrice * newQuan) + requestShareModel.currentPrice())/(newQuan+1);
+            newQuan++;
+            logger.info("Share ::" + requestShareModel.companyName() + "  Quantity ::" + newQuan + " Price::" + averagePrice);
             ShareMarketDetails marketDetails = new ShareMarketDetails();
             marketDetails.setQuantity(newQuan);
             marketDetails.setCurrentPrice(averagePrice);
-            marketDetails.setName(requestShareModel.getCompanyName());
+            marketDetails.setName(requestShareModel.companyName());
             marketDetailsList.add(marketDetails);
         }
         model.setShareMarketDetails(marketDetailsList);
+        model.setTotalQuantity(model.getShareMarketDetails().size());
+        model.setTotalInvestmentAmount(model.getTotalQuantity()* requestShareModel.currentPrice());
         return model;
     }
 
     public ShareMarketModel priceAnalysisByQuantity(RequestShareModel requestShareModel) {
         ShareMarketModel model = new ShareMarketModel();
-        model.setCompanyName(requestShareModel.getCompanyName());
-        Integer newQuan = requestShareModel.getExistingQuantity();
-        Double averagePrice = requestShareModel.getExistingPrice();
-        Integer desiredQuantity = requestShareModel.getDesiredQuantity();
+        model.setCompanyName(requestShareModel.companyName());
+        Integer newQuan = requestShareModel.existingQuantity();
+        Double averagePrice = requestShareModel.existingPrice();
+        Integer desiredQuantity = requestShareModel.desiredQuantity();
         List<ShareMarketDetails> marketDetailsList = new ArrayList<>();
         while( desiredQuantity > 0 ) {
-            ++newQuan;
-            averagePrice = ((averagePrice * newQuan) + requestShareModel.getCurrentPrice())/newQuan;
-            logger.info( requestShareModel.getCompanyName(), newQuan , averagePrice ,"Share :: {0}   Quantity :: {1}  Price:: {2}");
+            averagePrice = ((averagePrice * newQuan) + requestShareModel.currentPrice())/(newQuan+1);
+            newQuan++;
+            logger.info("Share ::" + requestShareModel.companyName() + "  Quantity ::" + newQuan + " Price::" + averagePrice);
             ShareMarketDetails marketDetails = new ShareMarketDetails();
             marketDetails.setQuantity(newQuan);
             marketDetails.setCurrentPrice(averagePrice);
-            marketDetails.setName(requestShareModel.getCompanyName());
+            marketDetails.setName(requestShareModel.companyName());
             marketDetailsList.add(marketDetails);
-
             desiredQuantity--;
         }
         model.setShareMarketDetails(marketDetailsList);
+        model.setTotalQuantity(model.getShareMarketDetails().size());
+        model.setTotalInvestmentAmount(model.getTotalQuantity()* requestShareModel.currentPrice());
         return model;
     }
 

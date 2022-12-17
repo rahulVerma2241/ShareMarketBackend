@@ -1,0 +1,3 @@
+FROM openjdk:17
+VOLUME /tmp
+ADD maven/share-market-app.jar market.jar

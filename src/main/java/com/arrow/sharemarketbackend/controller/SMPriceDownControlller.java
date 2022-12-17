@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("sharemarket")
 public class SMPriceDownControlller {
 
-    Logger logger = LoggerFactory.getLogger(SMPriceDownControlller.class);
-
+    private final Logger logger = LoggerFactory.getLogger(SMPriceDownControlller.class);
     PriceAnalysisService priceAnalysisService;
 
     @Autowired
@@ -34,6 +33,7 @@ public class SMPriceDownControlller {
            model = priceAnalysisService.priceDownAnalysisByPrice(shareModel);
         }
         catch (Exception e) {
+            logger.error("Error occurred in application ::: >> " + e.getMessage());
             e.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
@@ -49,6 +49,7 @@ public class SMPriceDownControlller {
             model = priceAnalysisService.priceDownAnalysisByPrice(shareModel);
         }
         catch (Exception e) {
+            logger.error("Error occurred in application ::: >> " + e.getMessage());
             e.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
