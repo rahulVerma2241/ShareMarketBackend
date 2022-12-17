@@ -24,7 +24,7 @@ public class SMPriceDownControllerTest {
     private RequestShareModel requestShareModel;
 
     @Test
-    public void givenQuantity_whenCheckForQuantity_thenRetunPrice() throws Exception {
+    public void givenQuantity_whenCheckForQuantity_thenReturnPrice() throws Exception {
         requestShareModel = new RequestShareModel(42,438.0,421.6,
                 "Tata Motors",428.0 , 66);
         ResultActions response = mockMvc.perform(get("/sharemarket/priceByQuantity")
