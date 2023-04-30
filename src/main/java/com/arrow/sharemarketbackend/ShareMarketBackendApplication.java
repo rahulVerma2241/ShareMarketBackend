@@ -14,10 +14,8 @@ public class ShareMarketBackendApplication {
 
     @Bean
     public GroupedOpenApi publicApi() {
-        return GroupedOpenApi.builder()
-                .group("springshop-public")
-                .pathsToMatch("/public/**")
-                .build();
+        return GroupedOpenApi.builder().group("springshop-public")
+                .pathsToMatch("/public/**").build();
     }
 
 }

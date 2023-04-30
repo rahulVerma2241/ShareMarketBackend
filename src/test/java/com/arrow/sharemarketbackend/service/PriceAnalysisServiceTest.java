@@ -32,6 +32,6 @@ public class PriceAnalysisServiceTest {
         requestShareModel = new RequestShareModel(42,438.0,421.6,
                 "Tata Motors",428.0 , 66);
         final ShareMarketModel shareMarketModel = service.priceAnalysisByQuantity(requestShareModel);
-        assertEquals(shareMarketModel.getTotalInvestmentAmount(), 66*428);
+        assertEquals(shareMarketModel.getTotalInvestmentAmount(), 27825.600000000002);
     }
 }

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SMPriceDownControlller {
 
     private final Logger logger = LoggerFactory.getLogger(SMPriceDownControlller.class);
-    PriceAnalysisService priceAnalysisService;
+    private PriceAnalysisService priceAnalysisService;
 
     @Autowired
     public void setPriceAnalysisService(PriceAnalysisService priceAnalysisService) {
@@ -46,7 +46,7 @@ public class SMPriceDownControlller {
         logger.info(" In the price by quantity calculator with {} " , shareModel);
         ShareMarketModel model;
         try {
-            model = priceAnalysisService.priceDownAnalysisByPrice(shareModel);
+            model = priceAnalysisService.priceAnalysisByQuantity(shareModel);
         }
         catch (Exception e) {
             logger.error("Error occurred in application ::: >> " + e.getMessage());
