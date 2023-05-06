@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SMPriceDownControlller {
 
     private final Logger logger = LoggerFactory.getLogger(SMPriceDownControlller.class);
+    @Autowired
     private PriceAnalysisService priceAnalysisService;
 
     @Autowired
