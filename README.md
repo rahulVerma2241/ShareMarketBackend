@@ -4,7 +4,7 @@
 
 ## How to Build application 
 ```
-$ mvn clean install
+ mvn clean install
 
 ```
 

@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("sharemarket")
+
 public class SMPriceDownControlller {
 
     private final Logger logger = LoggerFactory.getLogger(SMPriceDownControlller.class);
@@ -27,7 +30,10 @@ public class SMPriceDownControlller {
     }
 
     @GetMapping("/pricedown")
-    public ResponseEntity<ShareMarketModel> priceDown(@RequestBody RequestShareModel shareModel) {
+
+    public ResponseEntity<ShareMarketModel> priceDown(@RequestBody RequestShareModel shareModel,
+                                                      @AuthenticationPrincipal Jwt jwt) {
+        logger.info(" Jwt Token :: {}" , jwt.getTokenValue());
         logger.info(" In the price down calculator with {} " , shareModel);
         ShareMarketModel model;
         try {
