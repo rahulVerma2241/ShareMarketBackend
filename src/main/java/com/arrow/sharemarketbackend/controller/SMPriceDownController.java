@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("sharemarket")
 
-public class SMPriceDownControlller {
+public class SMPriceDownController {
 
-    private final Logger logger = LoggerFactory.getLogger(SMPriceDownControlller.class);
+    private final Logger logger = LoggerFactory.getLogger(SMPriceDownController.class);
     @Autowired
     private PriceAnalysisService priceAnalysisService;
 
