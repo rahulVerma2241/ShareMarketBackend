@@ -3,16 +3,12 @@ package com.arrow.sharemarketbackend.service;
 import com.arrow.sharemarketbackend.model.RequestShareModel;
 import com.arrow.sharemarketbackend.model.ShareMarketDetails;
 import com.arrow.sharemarketbackend.model.ShareMarketModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PriceAnalysisService {
-
-    private final Logger logger = LoggerFactory.getLogger(PriceAnalysisService.class);
 
     public ShareMarketModel priceDownAnalysisByPrice(RequestShareModel requestShareModel) {
         ShareMarketModel model = new ShareMarketModel();
@@ -23,7 +19,6 @@ public class PriceAnalysisService {
         while (averagePrice >= requestShareModel.desiredPrice()) {
             averagePrice = ((averagePrice * newQuan) + requestShareModel.currentPrice())/(newQuan+1);
             newQuan++;
-            logger.info("Share ::" + requestShareModel.companyName() + "  Quantity ::" + newQuan + " Price::" + averagePrice);
             ShareMarketDetails marketDetails = new ShareMarketDetails();
             marketDetails.setQuantity(newQuan);
             marketDetails.setCurrentPrice(averagePrice);
@@ -46,7 +41,6 @@ public class PriceAnalysisService {
         while( desiredQuantity > 0 ) {
             averagePrice = ((averagePrice * newQuan) + requestShareModel.currentPrice())/(newQuan+1);
             newQuan++;
-            logger.info("Share ::" + requestShareModel.companyName() + "  Quantity ::" + newQuan + " Price::" + averagePrice);
             ShareMarketDetails marketDetails = new ShareMarketDetails();
             marketDetails.setQuantity(newQuan);
             marketDetails.setCurrentPrice(averagePrice);

@@ -34,8 +34,7 @@ public class SMPriceDownControlller {
            model = priceAnalysisService.priceDownAnalysisByPrice(shareModel);
         }
         catch (Exception e) {
-            logger.error("Error occurred in application ::: >> " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Error occurred in application ::: >> " , e);
             return ResponseEntity.internalServerError().build();
         }
         logger.info(" Exited  price down calculator with {} " , shareModel);
@@ -50,8 +49,7 @@ public class SMPriceDownControlller {
             model = priceAnalysisService.priceAnalysisByQuantity(shareModel);
         }
         catch (Exception e) {
-            logger.error("Error occurred in application ::: >> " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Error occurred in application ::: >> " + e);
             return ResponseEntity.internalServerError().build();
         }
         logger.info(" Exited the price by quantity calculator with {} " , shareModel);
