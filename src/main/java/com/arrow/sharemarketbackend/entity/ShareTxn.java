@@ -1,18 +1,34 @@
 package com.arrow.sharemarketbackend.entity;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
+import java.util.UUID;
 
+@Entity
+@Table(name = "portfolio_trans")
 public class ShareTxn {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
+    @Column
     private String name;
-
+    @Column
     private LocalDate purchaseDate;
-
+    @Column
     private Double quantity;
-
+    @Column
     private Double price;
-
+    @Column
     private Double totalAmount;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

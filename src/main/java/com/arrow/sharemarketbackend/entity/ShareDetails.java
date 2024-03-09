@@ -1,23 +1,20 @@
 package com.arrow.sharemarketbackend.entity;
 
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 
 import java.util.List;
 
+@Entity
+@Table(name = "portfolio_details")
 public class ShareDetails {
-
+    @Id
     private String id;
-
+    @Column
     private String name;
-
+    @Column
     private Double quantity;
-
+    @Column
     private Double averagePrice;
-
-    @Transient
-    private Double totalPrice;
-
-    private List<ShareTxn> shareTxns;
 
     public String getId() {
         return id;
@@ -36,7 +33,7 @@ public class ShareDetails {
     }
 
     public Double getQuantity() {
-        return quantity;
+        return quantity==null ? 0.0 : quantity;
     }
 
     public void setQuantity(Double quantity) {
@@ -44,27 +41,11 @@ public class ShareDetails {
     }
 
     public Double getAveragePrice() {
-        return averagePrice;
+        return averagePrice == null ? 0.0 : averagePrice;
     }
 
     public void setAveragePrice(Double averagePrice) {
         this.averagePrice = averagePrice;
-    }
-
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public List<ShareTxn> getShareTxns() {
-        return shareTxns;
-    }
-
-    public void setShareTxns(List<ShareTxn> shareTxns) {
-        this.shareTxns = shareTxns;
     }
 
     @Override
@@ -74,8 +55,6 @@ public class ShareDetails {
                 ", name='" + name + '\'' +
                 ", quantity=" + quantity +
                 ", averagePrice=" + averagePrice +
-                ", totalPrice=" + totalPrice +
-                ", shareTxns=" + shareTxns +
                 '}';
     }
 }
