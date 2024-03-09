@@ -2,6 +2,7 @@ package com.arrow.sharemarketbackend.controller;
 
 import com.arrow.sharemarketbackend.model.ShareTxnModels;
 import com.arrow.sharemarketbackend.service.ShareDataSaverService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class SMDataSaverController {
     @Autowired
     ShareDataSaverService shareDataSaverService;
     @PostMapping("/sharetxn/data/")
-    public ResponseEntity<String> saveShareTxnData(@RequestBody ShareTxnModels shareTxnModels) {
+    public ResponseEntity<String> saveShareTxnData(@RequestBody @Valid ShareTxnModels shareTxnModels) {
         shareDataSaverService.saveShareTransaction(shareTxnModels);
         return ResponseEntity.accepted().build();
     }

@@ -25,8 +25,8 @@ public class ShareDataSaverService {
     private final ShareDetailsRepository shareDetailsRepository;
 
     @Autowired
-    public ShareDataSaverService(ShareTransactionRepository shareTransactionRepository
-        , ShareDetailsRepository shareDetailsRepository) {
+    public ShareDataSaverService(ShareTransactionRepository shareTransactionRepository,
+                                 ShareDetailsRepository shareDetailsRepository) {
         this.shareTransactionRepository = shareTransactionRepository;
         this.shareDetailsRepository = shareDetailsRepository;
     }
@@ -49,7 +49,8 @@ public class ShareDataSaverService {
         final Optional<ShareDetails> optionalDetails = shareDetailsRepository.findById(shareTxnModels.indexName());
         shareDetails = optionalDetails.orElseGet(ShareDetails::new);
         log.info("shareDetails {}", shareDetails );
-        shareDetails.setId(shareTxnModels.name());
+        shareDetails.setId(shareTxnModels.indexName());
+        shareDetails.setName(shareTxnModels.name());
         double average = ((shareDetails.getQuantity() * shareDetails.getAveragePrice())
                 + (shareTxnModels.purchasePrice() * shareTxnModels.purchaseQuantity()))
                 / (shareDetails.getQuantity() + shareTxnModels.purchaseQuantity());
