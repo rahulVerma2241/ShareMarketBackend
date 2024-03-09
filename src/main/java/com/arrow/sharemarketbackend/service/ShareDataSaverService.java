@@ -5,7 +5,6 @@ import com.arrow.sharemarketbackend.entity.ShareTxn;
 import com.arrow.sharemarketbackend.model.ShareTxnModels;
 import com.arrow.sharemarketbackend.repository.ShareDetailsRepository;
 import com.arrow.sharemarketbackend.repository.ShareTransactionRepository;
-import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
