@@ -3,13 +3,13 @@ package com.arrow.sharemarketbackend.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 @Table(name = "portfolio_trans")
 public class ShareTxn {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "sequence", sequenceName = "sequence", allocationSize = 1)
     private Integer id;
     @Column
     private String name;
@@ -21,6 +21,8 @@ public class ShareTxn {
     private Double price;
     @Column
     private Double totalAmount;
+
+
 
     public Integer getId() {
         return id;

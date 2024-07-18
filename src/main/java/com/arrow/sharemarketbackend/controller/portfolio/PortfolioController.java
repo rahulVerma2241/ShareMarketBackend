@@ -1,7 +1,8 @@
-package com.arrow.sharemarketbackend.controller;
+package com.arrow.sharemarketbackend.controller.portfolio;
 
 import com.arrow.sharemarketbackend.model.SummaryModel;
 import com.arrow.sharemarketbackend.service.PortfolioSummaryService;
+import com.arrow.sharemarketbackend.util.AppConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("portfolio")
+@RequestMapping(AppConstant.PORTFOILO)
 public class PortfolioController {
 
     private final PortfolioSummaryService portfolioSummaryService;

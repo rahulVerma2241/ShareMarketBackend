@@ -11,7 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
-public class PriceAnalysisServiceTest {
+class PriceAnalysisServiceTest {
 
     private RequestShareModel requestShareModel;
     @InjectMocks
@@ -19,7 +19,7 @@ public class PriceAnalysisServiceTest {
 
     @Test
     @DisplayName("Price down test cases")
-    public void givenPriceOfStockAndQuantity_whenCheckForDesiredPrice_thenRetunQuantity() {
+    void givenPriceOfStockAndQuantity_whenCheckForDesiredPrice_thenRetunQuantity() {
         requestShareModel = new RequestShareModel(42,438.0,421.6,
                 "Tata Motors",428.0 , 0);
         final ShareMarketModel shareMarketModel = service.priceDownAnalysisByPrice(requestShareModel);
@@ -28,10 +28,10 @@ public class PriceAnalysisServiceTest {
 
     @Test
     @DisplayName("Price down analysis with quantity test cases")
-    public void givenQuantity_whenCheckForQuantity_thenRetunPrice() {
+    void givenQuantity_whenCheckForQuantity_thenRetunPrice() {
         requestShareModel = new RequestShareModel(42,438.0,421.6,
                 "Tata Motors",428.0 , 66);
         final ShareMarketModel shareMarketModel = service.priceAnalysisByQuantity(requestShareModel);
-        assertEquals(shareMarketModel.getTotalInvestmentAmount(), 27825.600000000002);
+        assertEquals(27825.600000000002 ,shareMarketModel.getTotalInvestmentAmount());
     }
 }
