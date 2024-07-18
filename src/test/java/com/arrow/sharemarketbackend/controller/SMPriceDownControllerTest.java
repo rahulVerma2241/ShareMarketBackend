@@ -15,14 +15,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class SMPriceDownControllerTest {
+class SMPriceDownControllerTest {
     @Autowired
     protected MockMvc mockMvc;
     @Autowired
     protected ObjectMapper objectMapper;
 
     @Test
-    public void givenQuantity_whenCheckForQuantity_thenReturnPrice() throws Exception {
+    void givenQuantity_whenCheckForQuantity_thenReturnPrice() throws Exception {
         RequestShareModel  requestShareModel = new RequestShareModel(42,438.0,421.6,
                 "Tata Motors",428.0 , 66);
         ResultActions response = mockMvc.perform(get("/sharemarket/priceByQuantity")

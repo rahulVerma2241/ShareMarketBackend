@@ -3,6 +3,7 @@ package com.arrow.sharemarketbackend.controller;
 import com.arrow.sharemarketbackend.model.RequestShareModel;
 import com.arrow.sharemarketbackend.model.ShareMarketModel;
 import com.arrow.sharemarketbackend.service.PriceAnalysisService;
+import com.arrow.sharemarketbackend.util.AppConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("sharemarket")
-public class SMPriceDownControlller {
+@RequestMapping(AppConstant.SHARE_MARKET)
+public class SMPriceDownController {
 
-    private final Logger logger = LoggerFactory.getLogger(SMPriceDownControlller.class);
-    @Autowired
+    private final Logger logger = LoggerFactory.getLogger(SMPriceDownController.class);
+
     private PriceAnalysisService priceAnalysisService;
 
     @Autowired
@@ -34,8 +35,7 @@ public class SMPriceDownControlller {
            model = priceAnalysisService.priceDownAnalysisByPrice(shareModel);
         }
         catch (Exception e) {
-            logger.error("Error occurred in application ::: >> " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Error occurred in application ::: >> " , e);
             return ResponseEntity.internalServerError().build();
         }
         logger.info(" Exited  price down calculator with {} " , shareModel);
@@ -50,8 +50,7 @@ public class SMPriceDownControlller {
             model = priceAnalysisService.priceAnalysisByQuantity(shareModel);
         }
         catch (Exception e) {
-            logger.error("Error occurred in application ::: >> " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Error occurred in application ::: >> " , e);
             return ResponseEntity.internalServerError().build();
         }
         logger.info(" Exited the price by quantity calculator with {} " , shareModel);
