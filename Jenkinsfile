@@ -12,28 +12,26 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Example: Use Gradle, Maven, or another build tool
-                // sh './gradlew build'
-                echo 'Building the application...'
-                sh 'echo "Build step"'
+                withMaven(maven: 'Maven 3.9.9') {
+                    sh 'mvn clean package'
+                }
             }
         }
 
         stage('Test') {
-            steps {
-                // Run tests (e.g., unit tests)
-                // sh './gradlew test'
-                echo 'Running tests...'
-                sh 'echo "Test step"'
+             steps {
+                withMaven(maven: 'Maven 3.9.9') {
+                    sh 'mvn test'
+                }
             }
         }
 
+    
         stage('Deploy') {
             steps {
-                // Deploy the application
-                // Example: Deploy to a server, push Docker image, etc.
-                echo 'Deploying the application...'
-                sh 'echo "Deploy step"'
+                // Run the Spring Boot application
+                echo 'Deploying the Spring Boot application...'
+                sh 'java -jar target/ShareMarketBackend-0.0.1-SNAPSHOT.jar'
             }
         }
     }
