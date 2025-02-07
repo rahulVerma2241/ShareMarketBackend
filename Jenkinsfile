@@ -3,6 +3,11 @@ pipeline {
 
     tools {
         maven 'jenkins_maven'
+        docker 'jenkins_docker'
+    }
+
+    environment {
+        DOCKER_IMAGE : '1rahul23/share-market-jenkins:latest'
     }
     
     stages {
@@ -15,12 +20,17 @@ pipeline {
 
         stage('Build And Test') {
             steps {
-        
+                // maven command for creating build along with testing
                 sh 'mvn clean package'
-                
             }
         }
 
+        stage('Docker Build and Push') {
+            steps {
+                def customImage = docker.build(DOCKER_IMAGE)
+                customImage.push()
+            }
+        }
     
         stage('Deploy') {
             steps {
