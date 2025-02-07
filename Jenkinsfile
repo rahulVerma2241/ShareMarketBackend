@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE : '1rahul23/share-market-jenkins:latest'
+        DOCKER_IMAGE= '1rahul23/share-market-jenkins:latest'
     }
     
     stages {
