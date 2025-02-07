@@ -6,7 +6,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the current repository
-                git 'https://github.com/rahulVerma2241/ShareMarketBackend.git'
+                git branch: 'main', url: 'https://github.com/rahulVerma2241/ShareMarketBackend.git'
             }
         }
 
