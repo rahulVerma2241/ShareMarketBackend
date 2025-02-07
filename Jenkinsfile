@@ -31,7 +31,7 @@ pipeline {
                 sleep 30
 
                 script {
-                    def response = sh(script: "curl --writeout '%{http_code}' --silent --output /dev/null http://localhost:8081/actuator/health", returnStdout: true).trim()
+                    def response = sh(script: "curl -H --request GET http://localhost:8081/sharemarket/api/data", returnStdout: true).trim()
                     if (response != '200') {
                         error("Health check failed")
                     }
