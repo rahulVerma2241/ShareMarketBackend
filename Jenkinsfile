@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'jenkins_maven'
+    }
     
     stages {
         stage('Checkout') {
@@ -12,17 +15,17 @@ pipeline {
 
         stage('Build') {
             steps {
-                withMaven(maven: 'Maven 3.9.9') {
-                    sh 'mvn clean package'
-                }
+        
+                sh 'mvn clean package'
+                
             }
         }
 
         stage('Test') {
              steps {
-                withMaven(maven: 'Maven 3.9.9') {
-                    sh 'mvn test'
-                }
+              
+                sh 'mvn test'
+                
             }
         }
 
