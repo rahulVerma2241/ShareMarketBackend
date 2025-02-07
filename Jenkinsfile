@@ -1,11 +1,12 @@
 pipeline {
     agent any
 
+    
     stages {
         stage('Checkout') {
             steps {
                 // Checkout the current repository
-                checkout scm
+                git 'https://github.com/rahulVerma2241/ShareMarketBackend.git'
             }
         }
 
