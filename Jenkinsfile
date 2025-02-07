@@ -34,7 +34,19 @@ pipeline {
             steps {
                 // Run the Spring Boot application
                 echo 'Deploying the Spring Boot application...'
-                sh 'java -jar target/ShareMarketBackend-0.0.1-SNAPSHOT.jar'
+                sh 'nohup java -jar target/ShareMarketBackend-0.0.1-SNAPSHOT.jar &'
+
+                sleep 30
+
+                script {
+                    def response = sh(script: "curl --writeout '%{http_code}' --silent --output /dev/null http://localhost:8081/actuator/health", returnStdout: true).trim()
+                    if (response != '200') {
+                        error("Health check failed")
+                    }
+                    else {
+                        echo 'Health is passed'
+                    }
+                }
             }
         }
     }
