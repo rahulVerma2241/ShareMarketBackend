@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'jenkins_maven'
-        docker 'jenkins_docker'
+        dockerTool 'jenkins_docker'
     }
 
     environment {
@@ -27,8 +27,10 @@ pipeline {
 
         stage('Docker Build and Push') {
             steps {
-                def customImage = docker.build(DOCKER_IMAGE)
-                customImage.push()
+                script {
+                    def customImage = docker.build(DOCKER_IMAGE)
+                    customImage.push()
+                }
             }
         }
     
