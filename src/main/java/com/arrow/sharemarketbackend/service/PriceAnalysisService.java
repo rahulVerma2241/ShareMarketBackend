@@ -23,7 +23,7 @@ public class PriceAnalysisService {
         while (averagePrice >= requestShareModel.desiredPrice()) {
             averagePrice = ((averagePrice * newQuan) + requestShareModel.currentPrice())/(newQuan+1);
             newQuan++;
-            logger.info("Share ::" + requestShareModel.companyName() + "  Quantity ::" + newQuan + " Price::" + averagePrice);
+            logger.debug("Share ::" + requestShareModel.companyName() + "  Quantity ::" + newQuan + " Price::" + averagePrice);
             ShareMarketDetails marketDetails = new ShareMarketDetails();
             marketDetails.setQuantity(newQuan);
             marketDetails.setCurrentPrice(averagePrice);
@@ -46,7 +46,7 @@ public class PriceAnalysisService {
         while( desiredQuantity > 0 ) {
             averagePrice = ((averagePrice * newQuan) + requestShareModel.currentPrice())/(newQuan+1);
             newQuan++;
-            logger.info("Share ::" + requestShareModel.companyName() + "  Quantity ::" + newQuan + " Price::" + averagePrice);
+            logger.debug("Share ::" + requestShareModel.companyName() + "  Quantity ::" + newQuan + " Price::" + averagePrice);
             ShareMarketDetails marketDetails = new ShareMarketDetails();
             marketDetails.setQuantity(newQuan);
             marketDetails.setCurrentPrice(averagePrice);
