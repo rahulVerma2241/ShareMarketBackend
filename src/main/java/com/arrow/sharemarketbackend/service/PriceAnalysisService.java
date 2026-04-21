@@ -57,6 +57,7 @@ public class PriceAnalysisService {
         model.setShareMarketDetails(marketDetailsList);
         model.setTotalQuantity(model.getShareMarketDetails().size());
         model.setTotalInvestmentAmount(model.getTotalQuantity()* requestShareModel.currentPrice());
+        model.setStockPriceDiff(requestShareModel.existingPrice() - marketDetailsList.getLast().getCurrentPrice());
         return model;
     }
 

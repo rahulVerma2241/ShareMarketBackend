@@ -1,7 +1,12 @@
 package com.arrow.sharemarketbackend.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Setter
+@Getter
 public class ShareMarketModel {
 
     private List<ShareMarketDetails> shareMarketDetails;
@@ -12,35 +17,6 @@ public class ShareMarketModel {
 
     private String companyName ;
 
-    public String getCompanyName() {
-        return companyName;
-    }
+    private Double stockPriceDiff;
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public List<ShareMarketDetails> getShareMarketDetails() {
-        return shareMarketDetails;
-    }
-
-    public void setShareMarketDetails(List<ShareMarketDetails> shareMarketDetails) {
-        this.shareMarketDetails = shareMarketDetails;
-    }
-
-    public Double getTotalInvestmentAmount() {
-        return totalInvestmentAmount;
-    }
-
-    public void setTotalInvestmentAmount(Double totalInvestmentAmount) {
-        this.totalInvestmentAmount = totalInvestmentAmount;
-    }
-
-    public Integer getTotalQuantity() {
-        return totalQuantity;
-    }
-
-    public void setTotalQuantity(Integer totalQuantity) {
-        this.totalQuantity = totalQuantity;
-    }
 }
